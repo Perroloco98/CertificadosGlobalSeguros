@@ -30,8 +30,7 @@
     .vigilado-sidebar {
       position: fixed;
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 24px;
       z-index: 900;
       width: 28px;
       max-width: 28px;
@@ -57,21 +56,16 @@
     }
     @media (max-width: 768px) {
       .vigilado-sidebar {
-        top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        transform: none;
-        flex-direction: row;
-        border-radius: 8px 8px 0 0;
-        padding: 6px 16px;
-        justify-content: center;
-        box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+        bottom: 12px;
+        padding: 8px 4px;
+        width: 24px;
+        max-width: 24px;
       }
       .vigilado-sidebar img {
-        height: auto;
-        width: 160px;
-        transform: rotate(-90deg);
+        width: 14px !important;
+        max-width: 14px !important;
+        height: 160px !important;
+        max-height: 160px !important;
       }
     }
 
