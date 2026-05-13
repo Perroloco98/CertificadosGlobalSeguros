@@ -1039,6 +1039,7 @@
         <a href="#certificado-producto">Cert. Producto</a>
         <a href="#pago-beneficios">Pago Beneficios</a>
         <a href="#retiro-cesantias">Cesantías</a>
+        <a href="#certificado-embajada">Cert. Embajada</a>
         <a href="#redireccion-pqrf">PQRF</a>
       </nav>
     </div>
@@ -1068,6 +1069,7 @@
       <a href="#certificado-producto"><span class="ms" style="font-size:18px">description</span> Cert. de Producto</a>
       <a href="#pago-beneficios"><span class="ms" style="font-size:18px">payments</span> Pago de Beneficios</a>
       <a href="#retiro-cesantias"><span class="ms" style="font-size:18px">account_balance</span> Retiro Cesantías</a>
+      <a href="#certificado-embajada"><span class="ms" style="font-size:18px">language</span> Cert. de Embajada</a>
       <a href="#redireccion-pqrf"><span class="ms" style="font-size:18px">support_agent</span> Redirección PQRF</a>
     </nav>
   </div>
@@ -1144,6 +1146,13 @@
           <div>
             <h3>Historial de Pago</h3>
             <p>Consulta el historial de pagos de los productos ingresando un rango de fechas. El historial muestra información de los últimos 5 años.</p>
+          </div>
+        </a>
+        <a href="#certificado-embajada" class="cert-type-card animate-in">
+          <div class="cert-type-icon"><span class="ms ms-fill">language</span></div>
+          <div>
+            <h3>Certificado de Embajada</h3>
+            <p>Genera un certificado dirigido a embajadas u otras entidades. Disponible en dos modalidades: Matrícula y Pagos, para productos de Seguro Educativo.</p>
           </div>
         </a>
         <a href="#redireccion-pqrf" class="cert-type-card animate-in">
@@ -1749,12 +1758,81 @@
   </section>
 
   <!-- ============================================================
-       TUTORIAL 6: REDIRECCIÓN PQRF
+       TUTORIAL 6: CERTIFICADO DE EMBAJADA
+       ============================================================ -->
+  <section class="tutorial-section" id="certificado-embajada">
+    <div class="container">
+      <div class="tutorial-header">
+        <div class="tutorial-number">06</div>
+        <div class="tutorial-header-text">
+          <h2>Certificado de Embajada y otras Entidades</h2>
+          <p>Genera un certificado dirigido a embajadas u otras entidades. Disponible en dos modalidades: <strong>Matrícula</strong> y <strong>Pagos</strong>, para productos de <strong>Seguro Educativo</strong>. Puedes acceder desde la tarjeta del producto o desde el menú <strong>Certificados y Documentos</strong>.</p>
+        </div>
+      </div>
+
+      <div class="tutorial-content">
+        <div>
+          <div class="tutorial-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h4>Selecciona el tipo de certificado</h4>
+                <p>Elige entre <strong>Certificado de Embajada Matrícula</strong> o <strong>Certificado de Embajada Pagos</strong> según lo que necesites, y haz clic en <strong>Gestionar</strong>.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h4>Indica el destinatario</h4>
+                <p>En el campo <strong>¿A quién va dirigida la referencia?</strong> selecciona la entidad receptora: Embajada de USA, Embajada de EUA, Embajada de Costa Rica u Otras. Si eliges <strong>Otros</strong>, escribe el nombre de la entidad en el campo que se habilita.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h4>Genera el documento</h4>
+                <p>Haz clic en <strong>Generar Certificado</strong> para obtenerlo de inmediato.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="functions-guide">
+            <h4><span class="ms" style="font-size:18px">lightbulb</span> Datos requeridos</h4>
+            <div class="functions-list">
+              <div class="function-item"><span class="ms ms-fill">school</span> Tipo: Matrícula o Pagos</div>
+              <div class="function-item"><span class="ms ms-fill">language</span> Destinatario (embajada o entidad)</div>
+              <div class="function-item"><span class="ms ms-fill">edit</span> Nombre libre si seleccionas "Otros"</div>
+              <div class="function-item"><span class="ms ms-fill">verified</span> Generar certificado</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-screenshot">
+          <div class="screenshot-viewer">
+            <img src="img/page9_img0.png" alt="Pantalla de Certificado de Embajada y otras Entidades" />
+            <div class="zoom-controls">
+              <button class="zoom-btn" data-action="out" title="Alejar"><span class="ms">remove</span></button>
+              <span class="zoom-level">100%</span>
+              <button class="zoom-btn" data-action="in" title="Acercar"><span class="ms">add</span></button>
+              <button class="zoom-btn" data-action="reset" title="Restablecer"><span class="ms">fit_screen</span></button>
+            </div>
+          </div>
+          <div class="screenshot-caption">
+            <span class="ms" style="font-size:16px">photo_camera</span>
+            Vista del formulario de Certificado de Embajada y otras Entidades
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TUTORIAL 7: REDIRECCIÓN PQRF
        ============================================================ -->
   <section class="tutorial-section" id="redireccion-pqrf">
     <div class="container">
       <div class="tutorial-header">
-        <div class="tutorial-number">06</div>
+        <div class="tutorial-number">07</div>
         <div class="tutorial-header-text">
           <h2>Redirección Certificado — PQRF</h2>
           <p>Cuando creas una PQRF de certificados, el sistema te lleva directo a generar tu documento sin radicar la solicitud.</p>
