@@ -1971,20 +1971,59 @@
     });
 
     // ===== REDACTION SYSTEM =====
-    // Zonas de pixelado por imagen. Coordenadas en fracción del tamaño total (0.0 a 1.0):
+    // Zonas de pixelado por imagen. Clave = nombre de archivo CON extensión.
+    // Coordenadas en fracción del tamaño de la imagen (0.0 a 1.0):
     // { x: inicio horizontal, y: inicio vertical, w: ancho, h: alto }
-    // Puedes definir múltiples zonas por imagen en el array.
     const REDACT_ZONES = {
-      // Ejemplo: 'page2_img0': [{ x: 0.03, y: 0.06, w: 0.28, h: 0.05 }],
-      // ── Ajusta las coordenadas según dónde aparecen los datos sensibles ──
-      'page2_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page3_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page4_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page5_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page6_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page7_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page8_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
-      'page9_img0':  [{ x: 0.03, y: 0.06, w: 0.32, h: 0.05 }],
+
+      // ── Certificado Anual ──────────────────────────────────────────────
+      // Datos: ID en sidebar + 5 números de póliza en tabla
+      'page4_img0.png': [
+        { x: 0.010, y: 0.054, w: 0.210, h: 0.030 }, // Tomador - ID sidebar
+        { x: 0.470, y: 0.126, w: 0.300, h: 0.400 }, // Columna números de póliza
+      ],
+
+      // ── Historial de Pagos ─────────────────────────────────────────────
+      // Datos: ID en sidebar + números de póliza en tabla
+      'page5_img0.png': [
+        { x: 0.010, y: 0.054, w: 0.210, h: 0.030 }, // Tomador - ID sidebar
+        { x: 0.270, y: 0.142, w: 0.180, h: 0.400 }, // Columna números de póliza
+      ],
+
+      // ── Certificado de Producto ────────────────────────────────────────
+      // Datos: ID en sidebar + números de póliza en tabla
+      'page6_img0.png': [
+        { x: 0.010, y: 0.038, w: 0.210, h: 0.030 }, // Tomador - ID sidebar
+        { x: 0.460, y: 0.086, w: 0.260, h: 0.310 }, // Columna números de póliza
+      ],
+
+      // ── Certificados y Documentos (grid) ──────────────────────────────
+      // Datos: solo ID en sidebar
+      'page7_img0.png': [
+        { x: 0.010, y: 0.054, w: 0.210, h: 0.030 }, // Tomador - ID sidebar
+      ],
+
+      // ── Retiro de Cesantías ────────────────────────────────────────────
+      // Datos: solo ID en sidebar (modal sin datos pre-cargados)
+      'page8_img0.png': [
+        { x: 0.010, y: 0.054, w: 0.210, h: 0.030 }, // Tomador - ID sidebar
+      ],
+
+      // ── Certificado de Embajada ────────────────────────────────────────
+      // El más expuesto: ID, número de póliza y 4 nombres completos
+      'page9_img0.jpg': [
+        { x: 0.055, y: 0.082, w: 0.130, h: 0.022 }, // Tomador - ID sidebar
+        { x: 0.220, y: 0.071, w: 0.100, h: 0.018 }, // Número de póliza (header)
+        { x: 0.210, y: 0.148, w: 0.270, h: 0.020 }, // Nombre Tomador
+        { x: 0.210, y: 0.178, w: 0.270, h: 0.020 }, // Nombre Asegurado
+        { x: 0.450, y: 0.148, w: 0.250, h: 0.020 }, // Nombre Acudiente
+        { x: 0.450, y: 0.178, w: 0.320, h: 0.020 }, // Nombre Beneficiario/os
+      ],
+
+      // ── PQRF ──────────────────────────────────────────────────────────
+      // Sin datos personales visibles en esta pantalla (formulario vacío)
+      // 'page9_img0.png': [],
+
     };
 
     function pixelateRegion(ctx, sourceCanvas, x, y, w, h, blockSize) {
@@ -2002,7 +2041,7 @@
 
     document.querySelectorAll('.screenshot-viewer img').forEach(img => {
       const src      = img.getAttribute('src') || '';
-      const filename = src.split('/').pop().replace(/\.[^.]+$/, '');
+      const filename = src.split('/').pop(); // Incluye extensión para evitar colisiones
       const zones    = REDACT_ZONES[filename];
       if (!zones || zones.length === 0) return;
 
