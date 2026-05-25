@@ -1987,22 +1987,30 @@
 
     };
 
-    function pixelateRegion(ctx, sourceCanvas, x, y, w, h, blockSize) {
+    function blurRegion(ctx, sourceCanvas, x, y, w, h, blurPx) {
       if (w <= 0 || h <= 0) return;
+      // Extrae la zona con margen para que el blur no se corte en los bordes
+      const pad  = blurPx * 2;
       const temp = document.createElement('canvas');
-      temp.width  = Math.max(1, Math.ceil(w / blockSize));
-      temp.height = Math.max(1, Math.ceil(h / blockSize));
+      temp.width  = w + pad * 2;
+      temp.height = h + pad * 2;
       const tCtx = temp.getContext('2d');
-      tCtx.imageSmoothingEnabled = false;
-      tCtx.drawImage(sourceCanvas, x, y, w, h, 0, 0, temp.width, temp.height);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(temp, 0, 0, temp.width, temp.height, x, y, w, h);
-      ctx.imageSmoothingEnabled = true;
+      tCtx.filter = `blur(${blurPx}px)`;
+      tCtx.drawImage(sourceCanvas, x - pad, y - pad, w + pad * 2, h + pad * 2,
+                     0, 0, temp.width, temp.height);
+      // Recorta exacto al rectángulo para bordes limpios
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(x, y, w, h);
+      ctx.clip();
+      ctx.drawImage(temp, 0, 0, temp.width, temp.height,
+                    x - pad, y - pad, w + pad * 2, h + pad * 2);
+      ctx.restore();
     }
 
     document.querySelectorAll('.screenshot-viewer img').forEach(img => {
       const src      = img.getAttribute('src') || '';
-      const filename = src.split('/').pop(); // Incluye extensión para evitar colisiones
+      const filename = src.split('/').pop();
       const zones    = REDACT_ZONES[filename];
       if (!zones || zones.length === 0) return;
 
@@ -2014,13 +2022,13 @@
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
         zones.forEach(({ x, y, w, h }) => {
-          pixelateRegion(
+          blurRegion(
             ctx, canvas,
             Math.round(x * canvas.width),
             Math.round(y * canvas.height),
             Math.round(w * canvas.width),
             Math.round(h * canvas.height),
-            8 // tamaño del bloque — más bajo = más fino y mejor cobertura
+            12 // radio de blur en px — ajustar si se quiere más o menos intenso
           );
         });
         img.parentNode.insertBefore(canvas, img);
