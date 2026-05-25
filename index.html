@@ -1979,10 +1979,10 @@
       // ── Certificado de Embajada ────────────────────────────────────────
       // Solo nombres de personas visibles en la ficha del producto
       'page9_img0.jpg': [
-        { x: 0.210, y: 0.148, w: 0.270, h: 0.020 }, // Nombre Tomador
-        { x: 0.210, y: 0.178, w: 0.270, h: 0.020 }, // Nombre Asegurado
-        { x: 0.450, y: 0.148, w: 0.250, h: 0.020 }, // Nombre Acudiente
-        { x: 0.450, y: 0.178, w: 0.320, h: 0.020 }, // Nombre Beneficiario/os
+        { x: 0.215, y: 0.162, w: 0.250, h: 0.022 }, // Nombre Tomador
+        { x: 0.215, y: 0.205, w: 0.250, h: 0.022 }, // Nombre Asegurado
+        { x: 0.450, y: 0.162, w: 0.250, h: 0.022 }, // Nombre Acudiente
+        { x: 0.450, y: 0.205, w: 0.310, h: 0.022 }, // Nombre Beneficiario/os
       ],
 
     };
@@ -2020,7 +2020,7 @@
             Math.round(y * canvas.height),
             Math.round(w * canvas.width),
             Math.round(h * canvas.height),
-            14 // tamaño del bloque de pixelado — más alto = más borroso
+            8 // tamaño del bloque — más bajo = más fino y mejor cobertura
           );
         });
         img.parentNode.insertBefore(canvas, img);
